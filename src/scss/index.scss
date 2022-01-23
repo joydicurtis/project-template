@@ -1,5 +1,9 @@
-$margin: 20px;
+@import 'vendor/normalize';
 
-hr {
-    margin: $margin;
-}
+@import 'setup/setup';
+@import 'global';
+
+@import 'partials/layout';
+@import 'partials/forms';
+@import 'partials/footer';
+@import 'partials/header';
