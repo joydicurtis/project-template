@@ -3,6 +3,7 @@ const HTMLPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     entry: './src/index.js',
@@ -11,7 +12,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     optimization: {
-        minimize: true,
+        minimize: false,
         minimizer: [
             new CssMinimizerPlugin({}),
             new TerserPlugin()
@@ -28,7 +29,12 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: 'style.css'
-        })
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+              {from: "src/media", to: "media/"}
+            ],
+        }),
     ],
     module: {
         rules: [{
@@ -45,10 +51,41 @@ module.exports = {
                 use: {
                   loader: "babel-loader",
                   options: {
-                    presets: ['@babel/preset-env']
+                    presets: [
+                        ['@babel/preset-env', {
+                            targets: {
+                                "ie": "11"
+                            }
+                        }]
+                    ]
                   }
+                }
+            },
+
+            {
+                test: /\.(mov|mp4)$/,
+                use: [
+                  {
+                    loader: 'file-loader',
+                    options: {
+                      name: '[name].[ext]'
+                    }  
+                  }
+                ]
+            },
+            {
+                test:/\.(jpg|jpeg|png|svg)$/,
+                type: "asset",
+                parser: {
+                    dataUrlCondition: {
+                    maxSize: 8192
+                    }
                 }
             }
         ]
-    }
+    },
+    resolve: {
+        extensions: [".js"]
+    },
+    target: ['web', 'es5']
 }

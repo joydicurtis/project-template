@@ -42,5 +42,13 @@
     "webpack": "^5.67.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.7.3"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "classlist.js": "^1.1.20150312",
+    "copy-webpack-plugin": "^10.2.4",
+    "es6-promise-promise": "^1.0.0",
+    "file-loader": "^6.2.0",
+    "web-animations-js": "^2.3.2"
   }
 }
