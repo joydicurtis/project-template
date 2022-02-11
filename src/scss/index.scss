@@ -1,6 +1,9 @@
 @import 'vendor/normalize';
 
+@import 'setup/setup';
 @import 'global';
 
 @import 'partials/layout';
+@import 'partials/forms';
+@import 'partials/footer';
 @import 'partials/header';

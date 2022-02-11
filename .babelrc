@@ -2,10 +2,9 @@
     "presets": [
         [
             "@babel/preset-env", {
-                "targets": {
-                    "browsers": ["last 5 versions", "ie >= 11"]
-                },
-                "useBuiltIns": true
+                "targets": [
+                    "last 5 versions"
+                ]
             }
         ]
     ]
